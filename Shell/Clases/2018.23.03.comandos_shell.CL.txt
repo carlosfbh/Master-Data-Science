@@ -1,0 +1,421 @@
+a=3
+a
+$a
+echo $a
+a="Hola mundo"
+echo $a
+a='Hola mundo'
+echo $a
+echo $HOME
+echo 'Mi home esta en $HOME' 
+echo "Mi home esta en $HOME" 
+date
+echo date
+echo 'La fecha es date' 
+echo "La fecha es date" 
+echo `date`
+echo La fecha ahora mismo es `date`, ya casi son vacaciones
+echo La fecha ahora mismo es date, ya casi son vacaciones
+a=date
+echo $a
+a=`date`
+echo $a
+a=$(date)
+echo $a
+echo '$(date)' 
+echo "$(date)" 
+echo $(date)
+echo '`date`' 
+echo "`date`" 
+echo `date` 
+less .zshrc
+ls
+cd Data
+ls
+cd opentraveldata
+ls
+ll
+less optd_aircraft.csv
+wc -l optd_aircraft.csv
+seq 1 2 10
+seq 1 10
+seq 1 2 10 > /tmp/nums.txt
+seq 1 10 >>  /tmp/nums.txt
+less /tmp/nums.txt
+uniq /tmp/nums.txt
+cat /tmp/nums.txt | uniq
+cat /tmp/nums.txt | sort | less
+cat /tmp/nums.txt | sort | uniq
+cat /tmp/nums.txt | sort | uniq -c
+cat /tmp/nums.txt | sort | uniq -d
+gedit /tmp/nums.txt
+cat /tmp/nums.txt | sort | uniq
+cat /tmp/nums.txt | sort | uniq -c
+cat /tmp/nums.txt | sort | uniq -d
+cat /tmp/nums.txt | sort | head 5
+cat /tmp/nums.txt | sort | head -5
+cat /tmp/nums.txt | sort | head -6
+cat /tmp/nums.txt | sort -n | head -6
+cat /tmp/nums.txt | sort -n -r | head -6
+cat /tmp/nums.txt | sort -r | head -6
+gedit /tmp/nums.txt
+cat /tmp/nums.txt| sort | less
+cat /tmp/nums.txt| sort -n | less
+cat /tmp/nums.txt| sort -n -u
+cat /tmp/nums.txt| sort -u
+cat /tmp/nums.txt| sort -u | less
+less optd_aircraft.csv
+head optd_aircraft.csv| sort -t "^" -k 3 
+head optd_aircraft.csv| tail -n+1 | sort -t "^" -k 3 
+head optd_aircraft.csv| tail -n+2 | sort -t "^" -k 3 
+head optd_aircraft.csv
+sort -t '^' -k 2 -u optd_aircraft.csv
+sort -t '^' -k 2 -u optd_aircraft.csv | wc 
+sort -t '^' -k 2 -u optd_aircraft.csv | wc -l
+sort -t '^' -k 2 -u optd_aircraft.csv | less
+wc -l optd_aircraft.csv
+head optd_aircraft.csv
+head optd_aircraft.csv | cut -d '^' -f 2
+head optd_aircraft.csv | cut -d '^' -f 2,3
+head optd_aircraft.csv | cut -d '^' -f 2-6
+head optd_aircraft.csv | cut -d '^' -f 2
+head optd_aircraft.csv | cut -d '^' -f 2 | uniq
+head optd_aircraft.csv | cut -d '^' -f 2 | uniq | wc -l
+head optd_aircraft.csv | cut -d '^' -f 2 | sort | uniq | wc -l
+cat optd_aircraft.csv | cut -d '^' -f 2 | sort | uniq | wc -l
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq | wc -l
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq | less
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq | wc -l
+head optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq 
+head optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort
+head optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq
+head optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | less
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | head
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | head | sort
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | head | sort -n
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | sort -n
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | sort -n | head
+cat optd_aircraft.csv | tail -n+2 | cut -d '^' -f 2 | sort | uniq -c | sort -n -r | head
+ls
+find 
+find -size
+find -size +10M
+find -size +0
+ls
+ls -a
+ls -l
+ll
+alias ll
+ls -s
+find -exec ls -s
+find -exec ls -s {}
+find -exec ls -s {} +
+find -exec ls -s {} ;
+find -exec ls -s {} ";" 
+find -exec ls -s {} +
+find -exec ls -s {} ";" | sort -n
+cd
+find -exec ls -s {} ";" | sort -n
+find -exec ls -s {} ";" | less
+cd Data/opentraveldata
+find -exec ls -s {} ";" | sort -n 
+find -exec ls -s {} + | sort -n 
+cd 
+find -exec ls -s {} +
+find -exec ls -s {} +| head -100 | sort -n -r 
+find -exec ls -s {} + | sort -n -r 
+seq 15
+seq 15 > 20lines.txt
+ll
+ls
+seq 15 > 20lines.txt
+ls
+seq 9 1 20 >> 20lines.txt
+wc -l 20lines.txt
+echo "20\n20"
+echo 20; echo 20
+echo "20\n20"
+echo "20\n20" >> 20lines.txt
+wc -l 20lines.txt
+head 20lines.txt
+tail 20lines.txt
+sort 20lines.txt
+sort -n 20lines.txt
+sort -n 20lines.txt | uniq
+sort -n 20lines.txt
+sort -n 20lines.txt | uniq
+sort -n -u 20lines.txt 
+sort -n -d 20lines.txt 
+sort -d 20lines.txt 
+sort 20lines.txt  | uniq -d
+sort 20lines.txt  | uniq -c
+sort 20lines.txt  | uniq -c | sort -n
+sort 20lines.txt  | uniq -c | sort -n | tail -n 1
+sort 20lines.txt  | uniq -c | sort -n -r | head -1
+sort 20lines.txt  | uniq -c | sort -n
+seq 0 2 40 > 20lines2.txt
+ll 20*
+cat 20lines.txt 20lines2.txt > otro.txt
+wc -l otro.txt
+wc -l 20lines.txt
+wc -l 20lines2.txt
+less otro.txt
+cat 20lines.txt 20lines2.txt | sort | uniq > otro.txt
+wc -l otro.txt
+less otro.txt
+cat 20lines.txt 20lines2.txt | sort | uniq -c | head
+cat 20lines.txt 20lines2.txt > otro.txt
+cat otro.txt| sort | uniq -c | head
+cat otro.txt| sort | uniq -c | sort | head
+cat otro.txt| sort | uniq -c | sort -r | head
+cat otro.txt| sort | uniq -c | sort -r -n | head
+cd Data/opentraveldata
+less optd_aircraft.csv
+head optd_aircraft.csv | sort -t '^' -k 7 
+head optd_aircraft.csv | tail -n+2 | sort -t '^' -k 7 
+head optd_aircraft.csv | tail -n+2 | sort -t '^' -k 7 -r | head -1
+cat optd_aircraft.csv | tail -n+2 | sort -t '^' -k 7 -r | head -1
+cat optd_aircraft.csv | tail -n+2 | sort -t '^' -k 7 -r -n | head -1
+cd
+ls
+head otro.txt
+head otro.txt | paste
+head otro.txt | paste --
+head otro.txt | paste ---
+head otro.txt | paste -s
+paste otro.txt otro.txt
+paste otro.txt otro.txt otro.txt
+paste otro.txt otro.txt otro.txt otro.txt
+cd Data/opentraveldata
+head optd_aircraft.csv
+echo hola | tr o x
+head optd_aircraft.csv| tr '^' ','  
+ls
+less optd_por_public.csv
+less -S optd_por_public.csv
+head optd_por_public.csv| tr ' ' '\n'
+head optd_por_public.csv| tr ' ' '\n' | wc -l
+head optd_por_public.csv| tr '\n' '' | tr ' ' '\n'
+head optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n'
+head optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n' | wc -l
+head optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n' | sort 
+head optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n' | sort -r
+cat optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n' | sort -r
+cat optd_por_public.csv| tr '\n' 'x' | tr ' ' '\n' | sort -r | uniq -c | tail -n 1
+head optd_por_public.csv
+head -1 optd_por_public.csv
+head -1 optd_por_public.csv | tr '^' '\n' | wc -l
+head -1 optd_por_public.csv | tr '^' '\n' 
+head -1 optd_por_public.csv | tr '^' '\n' | head 5
+head -1 optd_por_public.csv | tr '^' '\n' | head -5
+seq 5
+paste seq 5 seq 5
+paste seq 5
+paste `seq 5`
+seq 5 | paste
+paste `seq 5` `seq 5`
+seq 5 | paste
+head -1 optd_por_public.csv | tr '^' '\n' | head -5
+head -1 optd_por_public.csv | tr '^' '\n' | head -5 > /tmp/cols.txt
+seq 1 5 > /tmp/nums.txt
+paste /tmp/nums.txt /tmp/cols.txt
+head -1 optd_por_public.csv | tr '^' '\n' | wc -l
+seq 1 `head -1 optd_por_public.csv | tr '^' '\n' | wc -l` 
+seq 1 `head -1 optd_por_public.csv | tr '^' '\n' | wc -l` > /tmp/nums.txt
+paste /tmp/nums.txt /tmp/cols.txt
+seq 1 `head -1 optd_por_public.csv | tr '^' '\n' | wc -l` > /tmp/nums.txt
+head -1 optd_por_public.csv | tr '^' '\n' > /tmp/cols.txt
+paste /tmp/nums.txt /tmp/cols.txt
+less -S optd_airlines.csv
+head -1 optd_airlines.csv| tr '^' '\n' | wc -l
+sort -t '^' -k 14 optd_airlines.csv 
+tail -n+2 optd_airlines.csv | sort -t '^' -k 14
+tail -n+2 optd_airlines.csv | sort -t '^' -k 14n
+tail -n+2 optd_airlines.csv | sort -t '^' -k 14n | tail -n 1
+less -S optd_airlines.csv
+head -1 optd_airlines.csv| tr '^' '\n' | wc -l
+seq 1 `head -1 optd_airlines.csv| tr '^' '\n' | wc -l` > /tmp/nums.txt
+head -1 optd_airlines.csv| tr '^' '\n' 
+head -1 optd_airlines.csv| tr '^' '\n' > /tmp/cols.txt
+paste /tmp/nums.txt /tmp/cols.txt
+paste /tmp/nums.txt /tmp/cols.txt | grep alliance
+head optd_airlines.csv| cut -d '^' -f 11
+head optd_airlines.csv| cut -d '^' -f 11 | uniq
+head optd_airlines.csv| cut -d '^' -f 11 | sort | uniq
+head optd_airlines.csv| tail -n+2 | cut -d '^' -f 11 | sort | uniq
+head optd_airlines.csv| tail -n+2 | cut -d '^' -f 11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | cut -d '^' -f 11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | cut -d '^' -f 10,11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | cut -d '^' -f 11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep Affiliate | cut -d '^' -f 11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep Member | cut -d '^' -f 11 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep Member | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep Affiliate | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep -E "[Affiliate|Member]" | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| tail -n+2 | grep Member | cut -d '^' -f 10 | sort | uniq -c
+cat optd_airlines.csv| grep Member | cut -d '^' -f 10 | sort | uniq -c
+head optd_airlines.csv
+head optd_airlines.csv | cut -d '^' -f 11
+head optd_airlines.csv | cut -d '^' -f 11 | grep M
+head optd_airlines.csv | cut -d '^' -f 11 | grep "M" 
+head optd_airlines.csv | cut -d '^' -f 11 | grep "b" 
+head optd_airlines.csv | cut -d '^' -f 11 | grep -v "b" 
+less optd_por_public.csv
+less -S optd_por_public.csv
+head optd_por_public.csv| cut -d '^' -f 8
+head optd_por_public.csv| cut -d '^' -f 8 | grep "^A"
+head optd_por_public.csv| cut -d '^' -f 8 | grep "A^"
+head optd_por_public.csv| cut -d '^' -f 8 | grep "t$"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^M"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^M" | wc -l
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^Mad" 
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^Madrid" 
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^M"
+cd Data/opentraveldata
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^Mad"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "^Madrid"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "station$"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "Station$"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep -E "Station$"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep -E "[s|S]tation$"
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "station$" | wc -l
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "Station$" | wc -l
+cat optd_por_public.csv| cut -d '^' -f 8 | grep -E "[s|S]tation$" | wc -l
+cat optd_por_public.csv| cut -d '^' -f 8 | grep "[s|S]tation$" | wc -l
+less optd_aircraft.csv
+head -3 optd_aircraft.csv
+head -3 optd_aircraft.csv | sed 's/^/,/'
+head -3 optd_aircraft.csv | sed 's/\^/,/'
+head -3 optd_aircraft.csv | sed 's/\^/,/g'
+head -3 optd_aircraft.csv | sed 's/iata/IATA/g'
+sed 's/\^/,\g' optd_aircraft.csv
+sed 's/\^/,/g' optd_aircraft.csv
+sed -i 's/\^/,/g' optd_aircraft.csv
+less optd_aircraft.csv
+sed -i 's/,/\^/g' optd_aircraft.csv
+head -3 optd_aircraft.csv
+sed 's/,/\^/g' optd_aircraft.csv
+cd
+ls Data
+find Data/airline_tickets
+cd Data/airline_tickets
+ll
+less sales_segments.csv.gz
+less data.tar.bz2
+zless sales_segments.csv.gz
+zcat sales_segments.csv.gz | wc -l
+zless data.tar.bz2
+bzless data.tar.bz2
+bzless data.tar.bz2 | wc -l
+bzcat data.tar.bz2 | wc -l
+ls
+ll
+zgrep iht data.tar.bz2
+zcat data.tar.bz2| grep iht
+bzcat data.tar.bz2| grep iht
+bzcat data.tar.bz2| grep -e iht
+ls
+zcat sales_segments.csv.gz| head -3
+cd
+cd Data/opentraveldata
+ls
+ll
+csvlook optd_aircraft.csv| less
+csvlook -d '^' optd_aircraft.csv| less
+csvlook -d '^' optd_aircraft.csv| less -S
+csvlook -d '^' optd_aircraft.csv| head -3 | less -S
+head -5 optd_aircraft.csv| csvlook -d '^' | less -S
+csvstat optd_aircraft.csv
+csvstat -d '^' optd_aircraft.csv | less
+csvsort --help
+csvsort --help | more
+csvstat -d '^' optd_aircraft.csv | less
+head optd_aircraft.csv | csvsort -d '^' -c 'nb_engines'
+head optd_aircraft.csv | csvsort -d '^' -c 'nb_engines' | csvlook
+head optd_aircraft.csv | csvsort -d '^' -c 'nb_engines' | csvlook | less -S
+head optd_aircraft.csv | csvsort -d '^' -c 'nb_engines' -r | csvlook | less -S
+cat optd_aircraft.csv | csvsort -d '^' -c 'nb_engines' -r | csvlook | less -S
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' 6
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -m 6
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -m ''
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -m '' | csvlook|less -S
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -m ' ' | csvlook|less -S
+csvgrep --help
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -r '' | csvlook|less -S
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -r '[1-9]' | csvlook|less -S
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -r '[1-9]' -i | csvlook|less -S
+cat optd_aircraft.csv | csvgrep -d '^' -c 'nb_engines' -r '[1-9]' | csvsort -c 'nb_engines' -r | head -5 | csvlook | less -S 
+csvlook -d optd_aircraft.csv| less -S
+csvlook -d '^' optd_aircraft.csv| less -S
+head optd_aircraft.csv| csvcut -d '^' -c 'name','nb_engines' 
+head optd_aircraft.csv| csvcut -d '^' -c 'model','nb_engines' 
+cat optd_aircraft.csv| csvcut -d '^' -c 'model','nb_engines' | csvsort -c 'nb_engines' -r | head | csvlook
+cat optd_aircraft.csv| csvcut -d '^' -c 'model','nb_engines'| csvgrep -c 'nb_engines' -r [1-9] | csvsort -c 'nb_engines' -r | head | csvlook
+cat optd_aircraft.csv| csvcut -d '^' -c 'model','nb_engines'| csvgrep -c 'nb_engines' -r '[1-9]' | csvsort -c 'nb_engines' -r | head | csvlook
+cat optd_aircraft.csv| csvcut -d '^' -c 'model','nb_engines'| csvgrep -c 'nb_engines' -r '[1-9]' | csvsort -c 'nb_engines' -r | head 
+ls
+head optd_airlines.csv| csvlook -d '^' | less -S
+head ref_airline_nb_of_flights.csv| csvlook
+head ref_airline_nb_of_flights.csv| csvlook -d '^' 
+csvjoin --help | less -S
+ll
+head optd_airlines.csv| csvlook -d '^' | less -S
+csvjoin -d '^' --left -c '2char_code','name','airline_code_2c','flight_freq' ref_airline_nb_of_flights.csv optd_airlines.csv | head
+csvjoin -d '^' --left -c '2char_code','airline_code_2c' ref_airline_nb_of_flights.csv optd_airlines.csv | head | csvlook | less -S
+head optd_airlines.csv| csvlook -d '^' | less -S
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | head | csvlook | less -S
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | head | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook | less
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | wc -l
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook | less
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' > /tmp/join.csv
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | head
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | head | csvlook | less -S
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvstat
+psql
+psql -l
+createdb facebook
+psql -l
+psql facebook
+psql -l
+ls *csv
+csvsql -d '^' my_fb_friends.csv
+csvsql -d '^' my_fb_friends.csv | psql facebook
+psql facebook
+ll *csv
+csvlook -d '^' my_fb_friends.csv
+csvsql -d '^' my_fb_friends.csv| psql facebook
+psql facebook
+csvsql -d '^' my_fb_friends.csv| psql facebook
+psql facebook
+createdb opentraveldata
+cd Data/opentraveldata
+ls
+csvsql -d '^' optd_aircraft.csv
+csvsql -d '^' optd_aircraft.csv | psql opentraveldata
+psql opentraveldata
+psql opentraveldarta
+psql opentraveldata
+psql facebook
+wget https://raw.githubusercontent.com/masterdatascience/postgres/master/my_ldin_contacts.csv
+head my_ldin_contacts.csv
+mv my_ldin_contacts.csv linkedin.csv
+ls *csv
+csvsql -d '^' linkedin.csv
+csvsql -d '^' linkedin.csv | psql facebook
+psql facebook
+cd Data/opentraveldata/
+ls
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook
+csvjoin -d '^' --left -c 'airline_code_2c','2char_code' ref_airline_nb_of_flights.csv optd_airlines.csv | csvcut -c 'airline_code_2c','flight_freq','name' | csvlook | head -5
+psql -l
+csvsql -d '^' ref_airline_nb_of_flights.csv| psql opentraveldata
+csvsql -d '^' optd_airlines.csv| psql opentraveldata
+psql opentraveldata
+cp .psql_history comandos_postgres.txt
+less .psql_history
+cp .history comandos_shell.txt
