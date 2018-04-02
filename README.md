@@ -1,15 +1,5 @@
 # Master-Data-Science
 
-Este es mi primer repositorio.
+Repositorio con el contenido del Máster en Data Science.
 
-Puedo escribir con markdown:
-
-* Lista de cosas
-* Otra cosa
-* Y otra más
-
-Puedo escribir en *cursiva*, o en **negrita**
-
-Hola
-
-Cualquier cosa, lo que yo quiera.
+	- Shell. Contiene las líneas de comandos de clase y ejercicios propuestos realizados.
