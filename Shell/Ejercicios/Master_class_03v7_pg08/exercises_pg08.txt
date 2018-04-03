@@ -17,3 +17,6 @@ Create another file with this command : seq 0 2 40 > 20lines2.txt
 
 4.
 Go to ~/Data/opentraveldata Get the line with the highest number of engines from optd_aircraft.csv by using sort.
+
+5. Ejercicio adicional por el profesor
+Dado el número de motores, ¿cuántos aviones hay con esos motores?
