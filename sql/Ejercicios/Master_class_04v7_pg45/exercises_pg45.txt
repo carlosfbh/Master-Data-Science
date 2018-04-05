@@ -1,0 +1,8 @@
+• Import optd_aircraft.csv and optd_airlines.csv in postgres
+( /Data/opentraveldata/)
+
+• Which airplane has the highest number of engines?
+(optd_aircraft)
+
+• What number of engines is most common on airplanes?
+(optd_aircraft)
