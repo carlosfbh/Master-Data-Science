@@ -1,0 +1,12 @@
+EJERCICIOS SQL
+
+• Create 'friends' DB if it does not exist.
+
+Exercise 1
+• Generate 'Facebook' table where every person is identified with the name, age, city of residence, and email. The table should at least have 10 rows.
+
+Exercise 2
+• Write a query to obtain Facebook friends which are younger than <18 or older than 65 years.
+
+Exercise 3
+• Write a query to obtain all the facebook friends which do not reside in Madrid.
