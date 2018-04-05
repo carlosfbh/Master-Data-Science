@@ -10,3 +10,15 @@ Exercise 2
 
 Exercise 3
 • Write a query to obtain all the facebook friends which do not reside in Madrid.
+
+Exercise 4
+• Add phone and username columns to your Facebook table.
+
+Exercise 5
+• What is the content of these two columns after their creation?
+
+Exercise 6
+• Update the phone number of all of your facebook friends
+
+Exercise 7
+• All your Facebook friends use their email as user name, so that both columns conicide. How can you take advantage of this fact when updating the user name column
