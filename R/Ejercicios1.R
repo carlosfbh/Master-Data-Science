@@ -32,7 +32,7 @@ menores <- titanic[titanic$Age < 18,]
 menores <- titanic[titanic$Age < 18 & !is.na(titanic$Age),]
 mean(menores$Survived)
 mean(titanic$Survived)
-
+nrow(menores)
 
 ## 8. Filtra aquellas mujeres de primera clase y extrae
 # las columnas Fare y Survived
@@ -41,7 +41,7 @@ mujeres1clase <- titanic[titanic$Pclass == 1 & titanic$Sex == "female", c("Fare"
 
 # 9. Porcentaje de supervivencia en este grupo.
 mean(mujeres1clase$Survived)
-
+nrow(mujeres1clase)
 
 # 10. Media de edad de hombres que sobrevivieron
 mean(titanic[titanic$Sex == "male" & titanic$Survived, "Age"], na.rm = TRUE)
@@ -120,4 +120,4 @@ summary(titanic[titanic$Sex == "female" & titanic$Pclass == 3, "desviacionFare"]
 # esta función
 
 xtabs(desviacionFare ~ Pclass + Sex, aggregate(desviacionFare ~ Pclass + Sex, titanic, min))
-
+xtabs(desviacionFare ~ Pclass + Sex, aggregate(desviacionFare ~ Pclass + Sex, titanic, mean))
