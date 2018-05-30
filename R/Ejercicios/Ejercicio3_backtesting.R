@@ -1,12 +1,22 @@
 #####
-# 3. Crea una función que haga el backtesting aceptando estrategias con 3 stocks.
+# 3. 
 
+# 3.1 Crea una función que haga el backtesting aceptando estrategias con 3 stocks.
 # La estrategia a seguir sería la siguiente:
 #   
 # Si de un día para otro (día A y día A+1) la bolsa sube en los tres stocks 
 # entonces se compra de aquel en el cual haya subido más.
 # 
 # Si hay empate se compra el que quieras (sólo 1)
+
+
+# 3.2 Hacer la misma función pero que acepten como parámetro dos nombres de stock
+# p.e: GOOGL, AAPL, BABA. y aplique la estrategia que hemos programado y devuelva el
+# beneficio final obtenido.
+# Es decir miFuncion("GOOGLE", "AAPL") devuelve el resultado final
+
+
+
 
 ## Solución
 
@@ -119,4 +129,49 @@ backtesting <- function(precioA, precioB, precioC, puntosDeCompra) {
 backtesting(bolsa$AMZN.Open, bolsa$GOOGL.Open, bolsa$AAPL.Open,
             puntosDeCompra(bolsa$AMZN.Open, bolsa$GOOGL.Open, bolsa$AAPL.Open))
 
+
+## Ahora voy a hacer miFuncion("AMZN", "GOOGL", "AAPL") devuelve el resultado final
+
+backtesting <- function(name1, name2, name3) {
+  
+  #1. Cojo los datos de la bolsa
+  company1 <- getSymbols(name1, from = "2014-01-01",auto.assign = F)
+  company2 <- getSymbols(name2, from = "2014-01-01",auto.assign = F)
+  company3 <- getSymbols(name3, from = "2014-01-01",auto.assign = F)
+  bolsa <- cbind(company1, company2, company3)
+  
+  
+  #2. Cojo los datos de apertura para cada compañía
+  precioA <- bolsa[, paste(name1, ".Open", sep = "")]
+  precioB <- bolsa[, paste(name2, ".Open", sep = "")]
+  precioC <- bolsa[, paste(name3, ".Open", sep = "")]
+  
+  
+  #3. Calculo los puntos de compra
+  deltaA <- diff(as.numeric(precioA))
+  deltaB <- diff(as.numeric(precioB))
+  deltaC <- diff(as.numeric(precioC))
+  
+  r <- (deltaA > 0 & deltaB > 0 & deltaC > 0) +
+    (((deltaA > 0 & deltaB > 0 & deltaC > 0) * (deltaB > deltaA & deltaB > deltaC)) * 1) +
+    (((deltaA > 0 & deltaB > 0 & deltaC > 0) * (deltaC > deltaA & deltaC > deltaB)) * 2)
+  
+  puntosDeCompra <- c(0,r)
+  
+  
+  #4. Calculo el beneficio
+  comprasA <- precioA[puntosDeCompra == 1]
+  comprasB <- precioB[puntosDeCompra == 2]
+  comprasC <- precioC[puntosDeCompra == 3]
+  
+  precioFinalA <- precioA[[length(precioA)]]
+  precioFinalB <- precioB[[length(precioB)]]
+  precioFinalC <- precioC[[length(precioC)]]
+  
+  (precioFinalA - mean(comprasA)) * length(comprasA) + 
+    (precioFinalB - mean(comprasB)) * length(comprasB) + 
+    (precioFinalC - mean(comprasC)) * length(comprasC)
+}
+
+backtesting("AMZN","GOOGL","AAPL")
 
