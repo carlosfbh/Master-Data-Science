@@ -1,0 +1,238 @@
+---
+title: "Ejercicio6_ggmap"
+author: "Carlos Ferrer-Bonsoms"
+date: "13 de junio de 2018"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Este es un R Markdown a modo de ejercicio para aprender su uso. Para su contenido me he basado en los ejercicos realizados sobre ggmap.
+
+#### Librerías requeridas
+
+```{r warning = FALSE, message = FALSE}
+library(tidyverse)
+library(ggmap)
+library(knitr)
+library(kableExtra)
+require(raster)
+require(plotly)
+```
+
+
+#### Ejercicio 1
+
+Dibujar un punto en un mapa con nombre
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+casa_zizur <- data.frame(lon = -1.693952,lat = 42.79191)
+mapa <- get_map(casa_zizur, zoom = 16)
+mapa2 <- get_map(casa_zizur, zoom = 16, source = "stamen", maptype = "watercolor")
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  geom_point(data = casa_zizur, aes(x = lon, y = lat), size = 3, col = "red3") +
+  geom_text(data = casa_zizur, aes(x = lon, y = lat), label = "Casa", size = 3)
+
+ggmap(mapa2) + 
+  geom_point(data = casa_zizur, aes(x = lon, y = lat), size = 3, col = "red3") +
+  geom_text(data = casa_zizur, aes(x = lon, y = lat), label = "Casa", size = 3)
+```
+
+
+#### Ejercicio 2
+
+Dibujar en un mapa las terrazas del barrio donde está Kschool.
+Utilizar la base de datos de las terrazas del csv.
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+terrazas <- read.csv("data/terrazas.csv")
+kschool <- data.frame(lon = -3.705715,lat = 40.43232)
+mapa <- get_map(kschool, zoom = 16)
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  geom_point(data = terrazas, aes(x = lon, y = lat), 
+             size = 1.5, alpha = 0.75, col = "orange3")
+```
+
+#### Ejercicio 3
+
+Mismo ejercicio que antes pero con gasolineras.
+Utilizar la base de datos de carburantes del csv.
+
+```{r, warning = FALSE, message = FALSE, echo = TRUE}
+gasolineras <- read.csv("data/carburantes.csv", sep = ";", encoding = "UTF-8", dec = ",")
+```
+
+Voy a ver las provincias con menor precio de media en Gasoleo.A
+
+```{r, warning = FALSE}
+p <- gasolineras %>% 
+  filter(Precio.Gasoleo.A != "", !is.na(Precio.Gasoleo.A)) %>% 
+  group_by(Provincia) %>% 
+  summarise(avg_precio = mean(Precio.Gasoleo.A)) %>% 
+  mutate(rango = rank(avg_precio)) %>% 
+  arrange(rango)
+
+kable(p, caption = "Precio medio en Gasóleo A") %>% 
+  kable_styling() %>% 
+  scroll_box(width = "100%", height = "200px")
+```
+
+Voy a dibujar las gasolineras de Madrid teniendo en cuenta solo el Precio.Gasoleo.A
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+gasolineras_madrid <- gasolineras %>%
+  filter(Provincia == "MADRID", Precio.Gasoleo.A != "", !is.na(Precio.Gasoleo.A)) %>% 
+  select(lon = Longitud..WGS84., lat = Latitud..WGS84., Precio.Gasoleo.A)
+
+madrid <- data.frame(lon = -3.70379,lat = 40.41678)
+mapa <- get_map(madrid)
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  geom_point(data = gasolineras_madrid, aes(x = lon, y = lat, color = Precio.Gasoleo.A),
+             alpha = 0.8, size = 1.5)
+```
+
+Ahora voy a dibujar las que tengan un precio menor a 1.10
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+gasolineras_madrid <- gasolineras %>%
+  filter(Provincia == "MADRID", Precio.Gasoleo.A != "", !is.na(Precio.Gasoleo.A)) %>% 
+  filter(Precio.Gasoleo.A < 1.10) %>% 
+  select(lon = Longitud..WGS84., lat = Latitud..WGS84., Precio.Gasoleo.A)
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  geom_point(data = gasolineras_madrid, aes(x = lon, y = lat),
+             alpha = 0.8, size = 2)
+```
+
+
+#### Ejercicio 4
+
+Dibujar las gasolineras en Madrid: Gasoleos y Gasolinas
+Que cada tipo de carburante tenga su gráfico
+Utilizar el color para ver la diferencia de precios
+
+Primero filtro los datos y selecciono las variables que quiero
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+gasolineras_madrid <- gasolineras %>% 
+  select(lon = Longitud..WGS84., lat = Latitud..WGS84.,
+         Provincia,
+         Precio.Gasolina.95.Protección,
+         Precio.Gasolina..98,
+         Precio.Gasoleo.A,
+         Precio.Nuevo.Gasoleo.A) %>% 
+  filter(Provincia == "MADRID", !is.na(Precio.Gasoleo.A),
+         !is.na(Precio.Nuevo.Gasoleo.A), !is.na(Precio.Gasolina..98),
+         !is.na(Precio.Gasolina.95.Protección))
+```
+
+Ahora transformo mi DF poniendo los tipos de carburantes en formato fila
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+gasolineras_madrid <- gather(gasolineras_madrid, carburante, precio, -lon, -lat, -Provincia)
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) +
+  geom_point(data = gasolineras_madrid, aes(x = lon, y = lat, color = precio),
+             size = 1.5, alpha = 0.8) +
+  ggtitle("Precios Carburantes en Madrid") +
+  facet_wrap( ~ carburante) + 
+  theme_bw()
+```
+
+
+#### Ejercicio 5
+
+Utiliza el conjunto de datos Crime que viene con el paquete ggmap
+Haz un gráfico en el mapa de Houston solo teniendo en cuenta los asaltos graves
+Un gráfico por tipo de asalto y un gráfico por día de la semana
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+houston_crime <- crime %>% 
+  filter(!offense %in% c("aggravated assault", "burglary", "theft"))
+
+houston <- data.frame(lon = -95.3698, lat = 29.76043)
+mapa <- get_map(houston, zoom = 14)
+```
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  geom_point(data = houston_crime, aes(x = lon, y =lat), 
+             size = 1, alpha = 0.6, color = "red3") +
+  facet_wrap( ~ offense)
+
+ggmap(mapa) + 
+  geom_point(data = houston_crime, aes(x = lon, y = lat), 
+             size = 1, alpha = 0.6, color = "red3") +
+  facet_wrap( ~ day)
+```
+
+
+
+#### Ejercicio 6 
+Utiliza el conjunto de datos Crime que viene con el paquete ggmap
+Haz un gráfico en el mapa de Houston solo teniendo en cuenta los asaltos graves
+Un gráfico por tipo de asalto y un gráfico en formato de densidades
+
+```{r, warning = FALSE}
+ggmap(mapa) + 
+  stat_density2d(data = houston_crime, aes(x = lon, y = lat, alpha = ..level..),
+                 fill = "red4", size = 2, geom = "polygon") + 
+  facet_wrap( ~ offense)
+```
+
+
+
+#### Ejercicio 7 
+Utilizando la base de datos del paro del csv:
+Hacer un gráfico de la tasa del paro según sexo y provincia en un mapa
+Se debe diferenciar la tasa del paro según el color (solo la península)
+Coger el primer trimestre del 2011
+
+```{r, warning = TRUE, message = FALSE, echo = TRUE}
+paro <- read.csv("data/paro.csv", encoding = "UTF-8")
+paro_I_2011 <- paro %>%
+  filter(Año == 2011)
+
+# Cargo el mapa de España y filtro para quedarme la península
+shape <- getData("GADM", country= "Spain", level = 2)
+peninsula <- subset(shape, !NAME_1 == "Islas Canarias")
+
+# Transformo la variable peninsula en data frame
+peninsula.df <- fortify(peninsula, region="CCA_2")
+
+# Ahora hago un merge para unificar las dos base de datos
+# Tengo que transformar la columna id porque está guardada como texto
+peninsula.df <- peninsula.df %>% 
+  mutate(id = as.numeric(id))
+
+peninsula_paro = inner_join(peninsula.df, paro_I_2011, by = c("id" = "Prov.id"))
+```
+
+```{r, warning = FALSE}
+ggplot(peninsula_paro) + 
+  aes(x = long, y = lat, group = group, fill = Tasa.paro) + 
+  geom_polygon(colour = "grey80", size = 0.1) + 
+  facet_grid(Sexo ~ Trimestre) + 
+  ggtitle("Tasa del paro 2011 por Trimestre") +
+  scale_fill_gradient(low = "aliceblue", high = "steelblue4") +
+  coord_quickmap()
+```
