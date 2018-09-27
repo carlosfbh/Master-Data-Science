@@ -1,0 +1,66 @@
+---
+title: "Primer paso"
+author: "Carlos"
+date: "1 de junio de 2018"
+output:
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(dplyr)
+library(ggmap)
+
+crimes.houston <- crime %>%
+  filter(!crime$offense %in% c("auto theft", "theft", "burglary"))
+
+houston <- c(lon=-95.3698,lat= 29.76043)
+HoustonMap <- get_map(houston, zoom = 14, color = "bw")
+ggmap(HoustonMap)
+
+ggmap(HoustonMap) + 
+  geom_point(aes(x = lon, y = lat, colour = offense), data = crimes.houston, size = 1)
+
+```
+
+Cosas de tablas
+
+```{r}
+titanic<-ftable(Survived~Class,data=Titanic)
+# Supervivencia al Titanic según clase
+titanic<-apply(Titanic,c(1,4),sum)
+titanic
+
+```
+
+mejor presentado
+
+```{r}
+library(knitr)
+kable(titanic,caption="Supervivencia a la catastrofe del Titanic según la clase")
+```
+
